@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import css from "./Contact.module.css"
+import { useSelector } from "react-redux";
 
 const Contact = ({ id, name, number, handleDeletContact }) => {
 

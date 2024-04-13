@@ -2,8 +2,13 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import clsx from "clsx";
 import css from "./ContactForm.module.css"
+import { useSelector } from "react-redux";
+import { nanoid } from 'nanoid';
+import { useId } from 'react';
 
-const ContactForm = ({ initialValues, handleSubmit, nameFieldId, numberFieldId }) => {
+
+
+const ContactForm = () => {
   const validationSchema = Yup.object().shape({
     username: Yup.string()
       .required("Username is required")
@@ -15,8 +20,17 @@ const ContactForm = ({ initialValues, handleSubmit, nameFieldId, numberFieldId }
       .max(50, "Number must not exceed 50 characters"),
   });
 
+  const items = useSelector(state => state.contacts.items);
+  const nameFieldId = useId();
+  const numberFieldId = useId();
+
+  const handleSubmit = (values, actions) => {
+   items(prevContacts => [...prevContacts, { "id": nanoid(), "name": values.username, "number": values.number }])
+    actions.resetForm();
+  };  
+
   return (
-    <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={validationSchema}>
+    <Formik initialValues={items} onSubmit={handleSubmit} validationSchema={validationSchema}>
       {({ errors, touched }) => (
         <Form className={css.form}>
           <label className={css.formLabel} htmlFor={nameFieldId}>Username</label>
