@@ -2,17 +2,20 @@ import clsx from "clsx";
 import css from "./Contact.module.css"
 import { useSelector } from "react-redux";
 
-const Contact = ({ id, name, number, handleDeletContact }) => {
+const Contact = (
+    
+) => {
 
-     const handleDelete = () => {
-        handleDeletContact(id);
-    };
+    const contacts = useSelector(state => state.contacts.contacts);
+    const filter = useSelector(state => state.filter.filter);   
+    
+
 
     return (
-        <div className={css.Contact} id={id}>
-            <div className={css.ContactData}><p>😀 {name}</p>
-            <p>☎ {number}</p></div>
-            <button className={css.ContactBTN} onClick={handleDelete}>Delete</button> {/* Виправлена помилка з onClick */}
+        <div className={css.Contact} >
+            <div className={css.ContactData}><p>😀</p>
+            <p>☎ </p></div>
+            <button className={css.ContactBTN} >Delete</button> 
         </div>
     );
 };

@@ -6,20 +6,23 @@ import { useSelector } from "react-redux";
 
 const SearchBox = () => {
     
-  const filters = useSelector(state => state.contacts.filters);
-  
+     const contacts = useSelector(state => state.contacts.contacts);
+     const filter = useSelector(state => state.filter.filter);  
+ 
+      
 
-  const handleChange = (evt) => {
-    filters(evt.target.value);
+  const searchID = useId();
+    
+    const handleChange = (evt) => {
+    (evt.target.value);
   };
 
-
-  const searchID = useId();  
+   
 
   return (
     <div>
       <label className={css.searchLabel} htmlFor={searchID}>Find contacts by name</label>
-      <input className={css.searchInput} id={searchID} type="text" value={filters} onChange={handleChange} />
+      <input className={css.searchInput} id={searchID} type="text"  onChange={handleChange}/>
     </div>
   );
 };

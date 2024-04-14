@@ -9,24 +9,6 @@ import { nanoid } from 'nanoid';
 function App() {
 
 
-const initialValues = {
-  username: "",
-  number: "",
-};
-  
-
-
-
-
-
- 
-  
-  
-  
- /* const handleDeletContact = (id) => {
-    const updatedContacts = filteredContacts.filter(contact => contact.id !== id);
-    setContacts(updatedContacts);
-  }; */
 
 
   
@@ -34,8 +16,7 @@ const initialValues = {
     <>
       
           <h1>Phonebook</h1>
-          <ContactForm  initialValues={initialValues} 
-            />
+          <ContactForm  />
           <SearchBox />
           <ContactList />
   

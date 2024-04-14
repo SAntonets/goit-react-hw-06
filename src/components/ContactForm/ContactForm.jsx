@@ -20,17 +20,17 @@ const ContactForm = () => {
       .max(50, "Number must not exceed 50 characters"),
   });
 
-  const items = useSelector(state => state.contacts.items);
+    const contacts = useSelector(state => state.contacts.contacts);
+    const filter = useSelector(state => state.filter.filter); 
+
+
   const nameFieldId = useId();
   const numberFieldId = useId();
 
-  const handleSubmit = (values, actions) => {
-   items(prevContacts => [...prevContacts, { "id": nanoid(), "name": values.username, "number": values.number }])
-    actions.resetForm();
-  };  
+
 
   return (
-    <Formik initialValues={items} onSubmit={handleSubmit} validationSchema={validationSchema}>
+    <Formik   validationSchema={validationSchema}>
       {({ errors, touched }) => (
         <Form className={css.form}>
           <label className={css.formLabel} htmlFor={nameFieldId}>Username</label>
