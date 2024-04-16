@@ -1,21 +1,17 @@
 import clsx from "clsx";
 import css from "./SearchBox.module.css"
 import { useId } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { changeFilter } from "../../redux/filterSlice";
 
 
-const SearchBox = () => {
-    
-     const contacts = useSelector(state => state.contacts.contacts);
-     const filter = useSelector(state => state.filter.filter);  
- 
-      
-
+  const SearchBox = () => { 
+  const dispatch = useDispatch();
   const searchID = useId();
     
-    const handleChange = (evt) => {
-    (evt.target.value);
-  };
+  const handleChange = (evt) => {
+    dispatch(changeFilter( evt.target.value ));
+  } 
 
    
 

@@ -2,9 +2,10 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import clsx from "clsx";
 import css from "./ContactForm.module.css"
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { nanoid } from 'nanoid';
 import { useId } from 'react';
+import { addContact } from "../../redux/contactsSlice";
 
 
 
@@ -20,17 +21,29 @@ const ContactForm = () => {
       .max(50, "Number must not exceed 50 characters"),
   });
 
-    const contacts = useSelector(state => state.contacts.contacts);
-    const filter = useSelector(state => state.filter.filter); 
 
-
+  const dispatch = useDispatch();
   const nameFieldId = useId();
   const numberFieldId = useId();
 
+ 
+  const initialValues = {
+      username: "",
+      number: "",
+  };
+
+  
+  
+  const handleSubmit = (values, actions) => {
+    actions.resetForm();
+    dispatch(addContact({ "id": nanoid(), "name": values.username, "number": values.number }));
+  };  
 
 
-  return (
-    <Formik   validationSchema={validationSchema}>
+
+
+return (
+    <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={validationSchema}>
       {({ errors, touched }) => (
         <Form className={css.form}>
           <label className={css.formLabel} htmlFor={nameFieldId}>Username</label>

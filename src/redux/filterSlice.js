@@ -1,3 +1,28 @@
+/* reducer.js - файл оголошення функцій-редюсерів для оновлення стану */
+import { createSlice } from "@reduxjs/toolkit";
+
+
+const initialState = {
+    filter: "",
+};  
+
+const filterSlice = createSlice({
+
+ name: "filter",
+ 
+    initialState: initialState,
+ 
+ reducers: {
+     changeFilter(state, action) {
+       state.filter = action.payload;
+     },
+ },
+});
+
+
+export const { changeFilter } = filterSlice.actions;
+
+export const filterReducer = filterSlice.reducer;
 
 
 
