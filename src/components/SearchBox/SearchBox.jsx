@@ -2,7 +2,7 @@ import clsx from "clsx";
 import css from "./SearchBox.module.css"
 import { useId } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { changeFilter } from "../../redux/filterSlice";
+import { changeFilter } from "../../redux/filtersSlice";
 
 
   const SearchBox = () => { 
